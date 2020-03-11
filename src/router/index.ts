@@ -1,27 +1,35 @@
 import Vue from 'vue';
-import VueRouter from 'vue-router';
-import Home from '../views/Home.vue';
+import Router from 'vue-router';
 
-Vue.use(VueRouter);
+const Home = () => import('@/views/Home/Home.vue');
+const SelectType = () => import('@/views/SelectType/SelectType.vue');
+const SpExp = () => import('@/views/SpExp/SpExp.vue');
+const ExpDetail = () => import('@/views/ExpDetail/ExpDetail.vue');
 
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home,
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
-  },
-];
+Vue.use(Router);
 
-const router = new VueRouter({
-  routes,
+export default new Router({
+  routes: [
+    {
+      path: '/',
+      name: 'Home',
+      component: Home,
+    },
+    {
+      path: '/SelectType',
+      name: 'SelectType',
+      component: SelectType,
+    },
+    {
+      path: '/SpExp/:type',
+      name: 'SpExp',
+      component: SpExp,
+      props: true,
+    },
+    {
+      path: '/ExpDetail',
+      name: 'ExpDetail',
+      component: ExpDetail,
+    },
+  ],
 });
-
-export default router;
